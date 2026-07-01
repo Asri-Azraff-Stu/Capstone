@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Flutter/Dart (if mobile app is in the same repo)
+/projectflow_mobile/.dart_tool/
+/projectflow_mobile/.idea/
+/projectflow_mobile/build/
+/projectflow_mobile/.pub-cache/
+/projectflow_mobile/.pub/
+/projectflow_mobile/ios/.symlinks/
+/projectflow_mobile/ios/Pods/
+/projectflow_mobile/macos/Flutter/ephemeral/
+/projectflow_mobile/macos/Pods/
+/projectflow_mobile/**/*.xcworkspace/xcuserdata/
+/projectflow_mobile/**/*.xcodeproj/xcuserdata/
+/projectflow_mobile/**/*.xcodeproj/project.xcworkspace/

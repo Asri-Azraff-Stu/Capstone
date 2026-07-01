@@ -1,0 +1,23 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom transition for form switching */
+.form-container {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, max-height 0.5s ease-in-out;
+    max-height: 1000px; /* High value to allow content to expand */
+    overflow: hidden;
+}
+
+.form-container.hidden {
+    opacity: 0;
+    transform: scale(0.98);
+    max-height: 0;
+}
+
+/* Password strength indicator styles */
+.strength-bar {
+    height: 4px;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}

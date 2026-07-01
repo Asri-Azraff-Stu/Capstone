@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectFlow - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 to-indigo-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full mx-4">
+        <div class="bg-white rounded-xl shadow-xl p-8">
+            <!-- Logo and Title -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-500 rounded-full mb-4">
+                    <i class="fas fa-tasks text-white text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800">ProjectFlow</h1>
+                <p class="text-slate-600 mt-2">Sign in to your account</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-slate-700 mb-2">Password</label>
+                    <input type="password" id="password" name="password" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Enter your password">
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-sky-600 focus:ring-sky-500 border-slate-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-slate-700">Remember me</label>
+                    </div>
+                </div>
+
+                <button type="submit" id="loginBtn" 
+                        class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span id="loginBtnText">Sign In</span>
+                    <i id="loginSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                </button>
+            </form>
+
+            <!-- Demo Accounts -->
+            <div class="mt-8 pt-6 border-t border-slate-200">
+                <p class="text-sm text-slate-600 text-center mb-4">Demo Accounts:</p>
+                <div class="space-y-2 text-xs">
+                    <div class="bg-slate-50 p-3 rounded-lg">
+                        <strong class="text-slate-700">Admin:</strong>
+                        <br>Email: asri.azraff@example.com
+                        <br>Password: AdminFlow#2025!
+                        <button onclick="fillLogin('asri.azraff@example.com', 'AdminFlow#2025!')" 
+                                class="mt-1 text-sky-600 hover:text-sky-700 font-medium">Use this account</button>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg">
+                        <strong class="text-slate-700">User:</strong>
+                        <br>Email: siti.nurhaliza@example.com
+                        <br>Password: UserPass@ProJ789
+                        <button onclick="fillLogin('siti.nurhaliza@example.com', 'UserPass@ProJ789')" 
+                                class="mt-1 text-sky-600 hover:text-sky-700 font-medium">Use this account</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-slate-600">
+                    Don't have an account? 
+                    <a href="#" id="showSignUp" class="text-sky-600 hover:text-sky-700 font-medium">Sign up here</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Sign Up Form (Hidden by default) -->
+        <div id="signUpContainer" class="bg-white rounded-xl shadow-xl p-8 mt-4 hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">Create Account</h2>
+                <p class="text-slate-600 mt-2">Join ProjectFlow today</p>
+            </div>
+
+            <form id="signUpForm" class="space-y-6">
+                <div>
+                    <label for="signUpFullName" class="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
+                    <input type="text" id="signUpFullName" name="fullName" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Enter your full name">
+                </div>
+
+                <div>
+                    <label for="signUpEmail" class="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                    <input type="email" id="signUpEmail" name="email" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label for="signUpPassword" class="block text-sm font-medium text-slate-700 mb-2">Password</label>
+                    <input type="password" id="signUpPassword" name="password" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Create a password">
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-slate-700 mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                           class="w-full px-3 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                           placeholder="Confirm your password">
+                </div>
+
+                <button type="submit" id="signUpBtn"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                    <span id="signUpBtnText">Create Account</span>
+                    <i id="signUpSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm text-slate-600">
+                    Already have an account? 
+                    <a href="#" id="showSignIn" class="text-sky-600 hover:text-sky-700 font-medium">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Toast -->
+    <div id="messageToast" class="fixed top-4 right-4 max-w-sm w-full bg-white border border-slate-200 rounded-lg shadow-lg p-4 transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <div id="messageIcon" class="flex-shrink-0 w-6 h-6 mr-3"></div>
+            <p id="messageText" class="text-sm font-medium text-slate-800"></p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const signUpForm = document.getElementById('signUpForm');
+        const signUpContainer = document.getElementById('signUpContainer');
+        const showSignUpBtn = document.getElementById('showSignUp');
+        const showSignInBtn = document.getElementById('showSignIn');
+        const messageToast = document.getElementById('messageToast');
+
+        // Event Listeners
+        loginForm.addEventListener('submit', handleLogin);
+        signUpForm.addEventListener('submit', handleSignUp);
+        showSignUpBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signUpContainer.classList.remove('hidden');
+            showSignUpBtn.parentElement.parentElement.style.display = 'none';
+        });
+        showSignInBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signUpContainer.classList.add('hidden');
+            showSignUpBtn.parentElement.parentElement.style.display = 'block';
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('authToken') && localStorage.getItem('currentUser')) {
+            window.location.href = 'index.html';
+        }
+
+        // Login Handler
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            setLoading('login', true);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    showMessage('Login successful! Redirecting...', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1000);
+                } else {
+                    showMessage(data.message || 'Login failed', 'error');
+                }
+            } catch (error) {
+                showMessage('Connection error. Please try again.', 'error');
+            } finally {
+                setLoading('login', false);
+            }
+        }
+
+        // Sign Up Handler
+        async function handleSignUp(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('signUpFullName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match', 'error');
+                return;
+            }
+
+            setLoading('signUp', true);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('Account created successfully! Please sign in.', 'success');
+                    signUpForm.reset();
+                    setTimeout(() => {
+                        signUpContainer.classList.add('hidden');
+                        showSignUpBtn.parentElement.parentElement.style.display = 'block';
+                    }, 1500);
+                } else {
+                    showMessage(data.message || 'Registration failed', 'error');
+                }
+            } catch (error) {
+                showMessage('Connection error. Please try again.', 'error');
+            } finally {
+                setLoading('signUp', false);
+            }
+        }
+
+        // Utility Functions
+        function setLoading(type, isLoading) {
+            const btn = document.getElementById(type === 'login' ? 'loginBtn' : 'signUpBtn');
+            const text = document.getElementById(type === 'login' ? 'loginBtnText' : 'signUpBtnText');
+            const spinner = document.getElementById(type === 'login' ? 'loginSpinner' : 'signUpSpinner');
+
+            btn.disabled = isLoading;
+            text.textContent = isLoading ? 'Please wait...' : (type === 'login' ? 'Sign In' : 'Create Account');
+            spinner.classList.toggle('hidden', !isLoading);
+        }
+
+        function showMessage(message, type) {
+            const messageText = document.getElementById('messageText');
+            const messageIcon = document.getElementById('messageIcon');
+            
+            messageText.textContent = message;
+            
+            if (type === 'success') {
+                messageIcon.innerHTML = '<i class="fas fa-check-circle text-green-500"></i>';
+                messageToast.className = messageToast.className.replace(/bg-\w+-\d+/, 'bg-green-50 border-green-200');
+            } else {
+                messageIcon.innerHTML = '<i class="fas fa-exclamation-circle text-red-500"></i>';
+                messageToast.className = messageToast.className.replace(/bg-\w+-\d+/, 'bg-red-50 border-red-200');
+            }
+
+            messageToast.style.transform = 'translateX(0)';
+            
+            setTimeout(() => {
+                messageToast.style.transform = 'translateX(100%)';
+            }, 4000);
+        }
+
+        function fillLogin(email, password) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+        }
+    </script>
+</body>
+</html>
